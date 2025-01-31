@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Définir l'image Docker comme une variable d'environnement
         DOCKER_IMAGE = "task-api"
-        //DOCKER_REGISTRY = "docker.io"  // Optionnel, si tu utilises un registre Docker privé
+        DOCKER_REGISTRY = "docker.io"  // Optionnel, si tu utilises un registre Docker privé
     }
 
     stages {
@@ -39,27 +39,28 @@ pipeline {
         }
 
         // Optionnel : étape de nettoyage (si nécessaire)
-        stage('Cleanup') {
-            steps {
-                script {
-                    // Supprimer l'image Docker locale après déploiement (si nécessaire)
-                    sh 'docker rmi ${DOCKER_IMAGE}'
+        // stage('Cleanup') {
+        //     steps {
+        //         script {
+        //             // Supprimer l'image Docker locale après déploiement (si nécessaire)
+        //             sh 'docker rmi ${DOCKER_IMAGE}'
+        //         }
+        //     }
+        // }
+
+        stage('Push to Docker Hub') {
+          steps {
+            script {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials',
+                 passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    // Se connecter à Docker Hub
+                    sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                    // Pousser l'image vers Docker Hub
+                    sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:latest"
                 }
             }
-        }
-
-        // stage('Push to Docker Hub') {
-          // steps {
-          //   script {
-          //       withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-          //           // Se connecter à Docker Hub
-          //           sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
-          //           // Pousser l'image vers Docker Hub
-          //           sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:latest"
-          //       }
-          //   }
-          // }
-          // }
+          }
+          }
 
     }
 
