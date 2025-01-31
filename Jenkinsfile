@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Définir l'image Docker comme une variable d'environnement
-        DOCKER_IMAGE = "task-api"
+        DOCKER_IMAGE = "nanga123/task-api"
         DOCKER_REGISTRY = "docker.io"  // Optionnel, si tu utilises un registre Docker privé
     }
 
