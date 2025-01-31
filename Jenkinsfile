@@ -56,7 +56,7 @@ pipeline {
                     // Se connecter à Docker Hub
                     sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
                     // Pousser l'image vers Docker Hub
-                    sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:latest"
+                    sh "docker push ${DOCKER_USERNAME}/task-api"
                 }
             }
           }
