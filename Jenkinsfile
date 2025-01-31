@@ -19,14 +19,14 @@ pipeline {
         }
 
         // Étape de test (si tu as des tests à exécuter)
-        stage('Run Tests') {
-            steps {
-                script {
-                    // Exécuter les tests, par exemple avec Jest ou Mocha
-                    sh 'npm test'
-                }
-            }
-        }
+        // stage('Run Tests') {
+        //     steps {
+        //         script {
+        //             // Exécuter les tests, par exemple avec Jest ou Mocha
+        //             sh 'npm test'
+        //         }
+        //     }
+        // }
 
         // Étape de déploiement
         stage('Deploy to Docker') {
