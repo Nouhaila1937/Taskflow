@@ -1,0 +1,2 @@
+ce projet j'ai ignorer le test parcequ'aucun de ces dernier ne veut marcher 
+soit mocha soit jest le npm test failed à chaque fois 
