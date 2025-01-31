@@ -1,21 +1,28 @@
 {
-  "name": "full_first_project",
+  "name": "taskflow",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest --runInBand"
-
+    "test": "jest --runInBand",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "TaskFlow est une application web permettant aux équipes de gérer leurs tâches et leurs projets en toute simplicité. L'objectif est de créer une API Node.js avec Express.js pour gérer les tâches et de mettre en place une pipeline CI/CD avec Jenkins, Docker et GitHub.",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "mongoose": "^8.9.5"
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "jest": "^29.7.0",
     "supertest": "^7.0.0"
+  },
+  "directories": {
+    "test": "tests"
   }
 }
